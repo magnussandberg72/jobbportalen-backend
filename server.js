@@ -35,7 +35,7 @@ app.post('/api/register', async (req, res) => {
   const existingUser = await User.findOne({ email });
   if (existingUser) return res.status(400).json({ message: 'Användare finns redan' });
 
-  const hashedPassword = await bcryptjs.hash(password, 10);
+  const hashedPassword = await bcrypt.hash(password, 10);
   const newUser = new User({ email, password: hashedPassword, role });
   await newUser.save();
 
@@ -48,7 +48,7 @@ app.post('/api/login', async (req, res) => {
   const user = await User.findOne({ email });
   if (!user) return res.status(400).json({ message: 'Fel e-post eller lösenord' });
 
-  const isMatch = await bcryptjs.compare(password, user.password);
+  const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) return res.status(400).json({ message: 'Fel e-post eller lösenord' });
 
   const token = jwt.sign({ userId: user._id, role: user.role }, JWT_SECRET, { expiresIn: '1d' });
