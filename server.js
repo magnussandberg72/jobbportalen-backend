@@ -12,6 +12,10 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB-anslutning
+mongoose.connect("mongodb://localhost:27017/jobbportalen", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 mongoose.connect('mongodb+srv://magnuskalix:Delirium240@jobbportalen-cluster.vbimvqb.mongodb.net/?retryWrites=true&w=majority&appName=jobbportalen-cluster', {
     useNewUrlParser: true,
     useUnifiedTopology: true
