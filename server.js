@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const bcrypt = require('bcryptjs'); // OBS: bcryptjs, inte bcrypt
+const bcrypt = require('bcryptjs');
+ // OBS: bcryptjs, inte bcrypt
 require('dotenv').config(); // om du använder .env (kan tas bort annars)
 
 const app = express();
